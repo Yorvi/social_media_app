@@ -17,6 +17,18 @@ app.set('view engine', 'pug');
 //routers
 app.use('/', pageRouter);
 
+//404 error
+app.use((req,res,next) => {
+  var err = new Error('Page Not Found');
+  err.status = 404;
+  next(err);
+});
+
+//error handling
+app.use((req, res, next) => {
+  res.status(err.status || 500);
+  res.send(err.message);
+});
 
 //set up the server
 app.listen(3000, () => {
