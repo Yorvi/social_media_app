@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const pageRouter = require('./routes/pages');
 
 const app = express();
 
@@ -13,10 +14,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-//index
-app.get('/', function(req, res) {
-  res.render('index');
-})
+//routers
+app.use('/', pageRouter);
 
 
 //set up the server
